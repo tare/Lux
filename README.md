@@ -28,6 +28,7 @@ Output chains
 Quick introduction
 -------------
 An usual Lux pipeline has the following steps
+
 1. Alignment of BS-seq and oxBS-seq data (e.g., [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) or [BSmooth](http://rafalab.jhsph.edu/bsmooth/)
 
 2.  Extraction of converted and unconverted counts (e.g., [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) or [BSmooth](http://rafalab.jhsph.edu/bsmooth/))
@@ -38,7 +39,7 @@ An usual Lux pipeline has the following steps
 
 5. Calculation of Bayes factors (**bf.py**)
 
-This documentation focus on the points three, four and five.
+This documentation focus on points three, four and five.
 
 Installation
 -------------
@@ -50,8 +51,7 @@ Below the environmental parameters **$STAN_HOME** and **$LUX_HOME** refers to th
 #### Installing CmdStan
 To install **CmdStan**, please first download the source code of **CmdStan** from http://mc-stan.org/interfaces/cmdstan.html and follow the included installation instructions.
 
-To cut the long story short, after extracting the source code running the following commands should be sufficient for our purposes
-
+In short, after extracting the source code, only the following commands are required
     cd $STAN_HOME
     make bin/print
     make bin/stanc
@@ -84,7 +84,8 @@ After completing the previous steps **Lux** is ready to be used. As an example, 
 For more details, please see the documentation of **CmdStan** available at http://mc-stan.org/documentation/.
 
 ### Generating input files
-A python script **parse.py** is supplied for generating input files for the use with **Lux**. Basically it transforms the user-supplied data files into the data format read by **CmdStan**, in addition, it initializes the model parameters with values sampled from the corresponding priors
+A python script **parse.py** is supplied for generating input files for the use with **Lux**. 
+Basically, it transforms the user-supplied data files into the data format read by CmdStan. In addition, it initializes the model parameters with values sampled from the corresponding priors
 
     usage: parse.py [-h] -d DATA -p PRIOR -cd CONTROL_DATA -cp CONTROL_PRIOR -pr PREFIX [-v]
     
@@ -133,7 +134,7 @@ Luckily, the data for the control cytosines is supplied in the same format as no
 
 As in **data.tsv**, on each line there should be exactly 4×N<sub>replicates</sub> values separated with the tabs. Each of the replicate specified in **data.csv** should have its own control data. Moreover, the order of the replicate-specific blocks between the noncontrol and control data is assumed to be the same.
 
-The prior knowledge on the control cytosines is supplied in the file **control_prior.tsv**. Although, the hierarchical model allows that the control cytosines would have different priors between replicates but this is not implemented in the current version. Therefore, each line in **control_prior.tsv** should have exactly three tab-separated values and the order of the rows, i.e., control cytosines, should be the same in **control_data.tsv** and **control_prior.tsv**.
+The prior knowledge on the control cytosines is supplied in the file **control_prior.tsv**. Although the hierarchical model allows that the control cytosines would have different priors between replicates, this is not implemented in the current version. Therefore, each line in **control_prior.tsv** should have exactly three tab-separated values and the order of the rows, i.e., control cytosines, should be the same in **control_data.tsv** and **control_prior.tsv**.
 
 ### Summarizing HMC chains
 After the runs are completed their output can be summarized using **print** as follows
@@ -183,12 +184,12 @@ Then the first four output lines are
 
 The script calculates Bayes factor for every **mu** variable.
 
-Notably, the chains are required to have the same number of **mu** variables, i.e., the same cytosines, and they should be supplied in the same order. However, calculation of Bayes factors between conditions with different number of replicates is supported. Additionally, **bf.py** assumes that α<sub>1</sub>=α<sub>2</sub>=α<sub>3</sub>=0.8.
+Notably, the chains are required to have the same number of **mu** variables, i.e., the same cytosines, and they should be supplied in the same order. However, calculation of Bayes factors between conditions with a different number of replicates is supported. Additionally, **bf.py** assumes that α<sub>1</sub>=α<sub>2</sub>=α<sub>3</sub>=0.8.
 
 For more details on the the calculation of Bayes factor, please see the original publication in which the procedure is explained in detail.
 
 ### Advanced uses
-Some users might want to consider of using **Lux** through the **RStan** or **PyStan** interfaces (see http://mc-stan.org/interfaces/).
+Some users might want to consider using **Lux** through the **RStan** or **PyStan** interfaces (see http://mc-stan.org/interfaces/).
 
 ### References
 [1] M. J. Betancourt, “Generalizing the No-U-Turn Sampler to Riemannian Manifolds,” arXiv, vol. 1304, no. 1920, 2013. 
