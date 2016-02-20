@@ -52,6 +52,7 @@ Below the environmental parameters **$STAN_HOME** and **$LUX_HOME** refers to th
 To install **CmdStan**, please first download the source code of **CmdStan** from http://mc-stan.org/interfaces/cmdstan.html and follow the included installation instructions.
 
 In short, after extracting the source code, only the following commands are required
+
     cd $STAN_HOME
     make bin/print
     make bin/stanc
