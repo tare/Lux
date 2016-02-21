@@ -3,12 +3,12 @@ Lux
 
 Overview
 -------------
-Lux is an integrative hierarchical Bayesian model for analyzing BS-seq and oxBS-seq data enabling accurate and unbiased quantification of different cytosine modifications and differential methylation at individual cytosines or loci, with or without replicates, while taking imperfect experimental parameters into account.
+Lux is an integrative hierarchical Bayesian model for analyzing any combination of BS-seq/oxBS-seq/TAB-seq/fCAB-seq/CAB-seq/redBS-seq/MAB-seq/etc data enabling accurate and unbiased quantification of different cytosine modifications (C/5mC/5hmC/5fC/5cac) and differential methylation at individual cytosines or loci, with or without replicates, while taking imperfect experimental parameters into account.
 
 Features
 -------------
-- Model-based integration and analysis of BS-seq and oxBS-seq data from whole genome, reduced representation or targeted experiments
-- Consideration of nonideal experimental parameters through modeling
+- Model-based integration and analysis of BS-seq/oxBS-seq/TAB-seq/fCAB-seq/CAB-seq/redBS-seq/MAB-seq/etc. data from whole genome, reduced representation or targeted experiments
+- Consideration of nonideal experimental parameters through modeling, including e.g. bisulphite conversion and oxidation efficiencies, various chemical labeling and protection steps etc.
 - Model-based integration of biological replicates
 - Detection of differential methylation at individual cytosines or regions using Bayes factors (DMRs)
 - Full Bayesian inference with Hamiltonian Monte Carlo (HMC) using No-U-Turn sampler (NUTS) implemented in **Stan**
