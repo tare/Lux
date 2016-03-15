@@ -1,4 +1,3 @@
-// LUX
 data {
   real g_a;
   real g_b;
