@@ -30,7 +30,7 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
   control_data = numpy.loadtxt(control_data_file,delimiter='\t',skiprows=0,dtype='int')
   control_prior = numpy.loadtxt(control_prior_file,delimiter='\t',skiprows=0,dtype='float')
 
-  # make sure the the arrays are 2-dimensional
+  # make sure the arrays are 2-dimensional
   if len(data.shape) == 1:
     data = numpy.reshape(data,[1,len(data)])
   if len(prior.shape) == 1:
@@ -125,13 +125,13 @@ if __name__ == '__main__':
   parser.add_argument('-v','--version',action='version',version='%(prog)s 0.666')
 
   options = parser.parse_args()
-  if not os.path.isfile(options.chain1):
+  if not os.path.isfile(options.data):
     sys.exit('error: %s is not a file'%(options.data))
-  if not os.path.isfile(options.chain2):
+  if not os.path.isfile(options.prior):
     sys.exit('error: %s is not a file'%(options.prior))
-  if not os.path.isfile(options.chain1):
+  if not os.path.isfile(options.control_data):
     sys.exit('error: %s is not a file'%(options.control_data))
-  if not os.path.isfile(options.chain2):
+  if not os.path.isfile(options.control_prior):
     sys.exit('error: %s is not a file'%(options.control_prior))
 
   generate_output_files([options.data,options.prior,options.control_data,options.control_prior,options.prefix])
