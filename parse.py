@@ -37,8 +37,8 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
     prior = numpy.reshape(prior,[1,len(prior)])
   if len(control_data.shape) == 1:
     control_data = numpy.reshape(control_data,[1,len(control_data)])
-  if len(prior_control.shape) == 1:
-    prior_control = numpy.reshape(prior_control,[1,len(control_prior)])
+  if len(control_prior.shape) == 1:
+    control_prior = numpy.reshape(control_prior,[1,len(control_prior)])
 
   # check that the files were in the right format
   if data.shape[1] % 4 != 0:
@@ -56,9 +56,9 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
     sys.exit('error: the number of lines do not match in %s and %s',control_data_file,control_prior_file)
     
   # get the number of replicates
-  R = data_control.shape[1]/4
+  R = control_data.shape[1]/4
   # get the number of control cytosines
-  N_control = data_control.shape[0]
+  N_control = control_data.shape[0]
   # get the number of noncontrol cytosines
   N = data.shape[0]
 
@@ -66,7 +66,7 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
   bsC, bsTot, oxC, oxTot = data[:,0::4], data[:,1::4], data[:,2::4], data[:,3::4]
 
   # get the number of C and total read-outs for control cytosines in BS-seq and oxBS-seq
-  bsC_control, bsTot_control, oxC_control, oxTot_control = data_control[:,0::4], data_control[:,1::4], data_control[:,2::4], data_control[:,3::4]
+  bsC_control, bsTot_control, oxC_control, oxTot_control = control_data[:,0::4], control_data[:,1::4], control_data[:,2::4], control_data[:,3::4]
 
   # print DATA
   with open(prefix+'_data.R','w') as f:
@@ -84,7 +84,7 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
     f.write("oxTot_control <- structure(c(%s), .Dim=c(%d,%d))\n" % (','.join(map(str,oxTot_control.flatten(1))),N_control,R))
 
     f.write("alpha <- structure(c(%s), .Dim=c(%d,%d))\n" % (','.join(map(str,prior.flatten(1))),N,3))
-    f.write("alpha_control <- structure(c(%s), .Dim=c(%d,%d))\n" % (','.join(map(str,prior_control.flatten(1))),N_control,3))
+    f.write("alpha_control <- structure(c(%s), .Dim=c(%d,%d))\n" % (','.join(map(str,control_prior.flatten(1))),N_control,3))
 
   # sample initial values from priors
   mu_bsEff = scipy.stats.norm.rvs(mu_mu_bsEff, sigma_mu_bsEff)
@@ -103,7 +103,7 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
     raw_seqErr.append(scipy.stats.norm.rvs(0,1))
   g = [numpy.random.gamma(g_a,1.0/g_b) for x in range(0,N)]
   theta = ','.join(numpy.array([map(str,numpy.random.dirichlet(row)) for row in numpy.tile(prior,(R,1))]).flatten(1))
-  theta_control = ','.join(numpy.array([map(str,numpy.random.dirichlet(row)) for row in numpy.tile(prior_control,(R,1))]).flatten(1))
+  theta_control = ','.join(numpy.array([map(str,numpy.random.dirichlet(row)) for row in numpy.tile(control_prior,(R,1))]).flatten(1))
   mu = ','.join(numpy.array([map(str,numpy.random.dirichlet(row)) for row in prior]).flatten(1))
 
   # print INIT
