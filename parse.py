@@ -134,4 +134,4 @@ if __name__ == '__main__':
   if not os.path.isfile(options.control_prior):
     sys.exit('error: %s is not a file'%(options.control_prior))
 
-  generate_output_files([options.data,options.prior,options.control_data,options.control_prior,options.prefix])
+  generate_output_files(options.data,options.prior,options.control_data,options.control_prior,options.prefix)
