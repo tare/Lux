@@ -42,18 +42,18 @@ def generate_output_files(data_file,prior_file,control_data_file,control_prior_f
 
   # check that the files were in the right format
   if data.shape[1] % 4 != 0:
-    sys.exit('error: the number of columns in %s is not divisible by four',data_file)
+    sys.exit('error: the number of columns in %s is not divisible by four'%(data_file))
   if prior.shape[1] != 3:
-    sys.exit('error: there should be exactly three columns in %s',prior_file)
+    sys.exit('error: there should be exactly three columns in %s'%(prior_file))
   if control_data.shape[1] % 4 != 0:
-    sys.exit('error: the number of columns in the file %s is not divisible by four',control_data_file)
+    sys.exit('error: the number of columns in the file %s is not divisible by four'%(control_data_file))
   if control_prior.shape[1] != 3:
-    sys.exit('error: there should be exactly three columns in %s',control_prior_file)
+    sys.exit('error: there should be exactly three columns in %s'%(control_prior_file))
 
   if data.shape[0] != prior.shape[0]:
-    sys.exit('error: the number of lines do not match in %s and %s',data_file,prior_file)
+    sys.exit('error: the number of lines do not match in %s and %s'%(data_file,prior_file))
   if control_data.shape[0] != control_prior.shape[0]:
-    sys.exit('error: the number of lines do not match in %s and %s',control_data_file,control_prior_file)
+    sys.exit('error: the number of lines do not match in %s and %s'%(control_data_file,control_prior_file))
     
   # get the number of replicates
   R = control_data.shape[1]/4
