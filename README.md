@@ -20,10 +20,10 @@ Downloads
 Here we provide the input data sets and the obtained HMC chains used in the publication.
 
 Input data
-[v65_t2kd_data.tar.bz2](https://dl.dropboxusercontent.com/u/2392459/v65_t2kd_data.tar.bz2)
+[v65_t2kd_data.tar.bz2](https://www.dropbox.com/s/nke5latz0kyybbn/v65_t2kd_data.tar.bz2?dl=0)
 
 Output chains
-[v65_t2kd_chains.tar.bz2](https://dl.dropboxusercontent.com/u/2392459/v65_t2kd_chains.tar.bz2)
+[v65_t2kd_chains.tar.bz2](https://www.dropbox.com/s/zhz77xw8nqpiy2s/v65_t2kd_chains.tar.bz2?dl=0)
 
 Quick introduction
 -------------
