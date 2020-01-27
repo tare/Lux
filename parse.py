@@ -72,7 +72,7 @@ def generate_output_files(data_file,prior_file,control_data_file, \
 
   # get the number of C and total read-outs for
   # noncontrol cytosines in BS-seq and oxBS-seq
-  bsC, bsTot, oxC, oxTot = data[:,0::4], data[:,1::4]
+  bsC, bsTot = data[:,0::4], data[:,1::4]
   oxC, oxTot = data[:,2::4], data[:,3::4]
 
   # get the number of C and total read-outs for control cytosines in BS-seq and oxBS-seq
